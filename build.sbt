@@ -1,17 +1,20 @@
-// See README.md for license details.
+// build.sbt
+// 黄金组合：Chisel 6 + ChiselTest 6
 
-ThisBuild / scalaVersion     := "2.13.16"
+ThisBuild / scalaVersion     := "2.13.12"
 ThisBuild / version          := "0.1.0"
-ThisBuild / organization     := "%ORGANIZATION%"
+ThisBuild / organization     := "com.jay"
 
-val chiselVersion = "7.0.0"
+val chiselVersion = "6.0.0"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "%NAME%",
+    name := "chisel-demo",
     libraryDependencies ++= Seq(
+      // 核心库
       "org.chipsalliance" %% "chisel" % chiselVersion,
-      "org.scalatest" %% "scalatest" % "3.2.19" % "test",
+      // 测试库
+      "edu.berkeley.cs" %% "chiseltest" % "6.0.0" % Test
     ),
     scalacOptions ++= Seq(
       "-language:reflectiveCalls",
@@ -20,5 +23,5 @@ lazy val root = (project in file("."))
       "-Xcheckinit",
       "-Ymacro-annotations",
     ),
-    addCompilerPlugin("org.chipsalliance" % "chisel-plugin" % chiselVersion cross CrossVersion.full),
+    addCompilerPlugin("org.chipsalliance" % "chisel-plugin" % chiselVersion cross CrossVersion.full)
   )
